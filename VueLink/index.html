@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VueJS</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div id="loay-app">
+      <!-- use variable from vue -->
+      <h1>Welcome To VueJS {{ message }}</h1>
+
+      <!-- use function from vue -->
+      <h1>Welcome To VueJS {{ sayHi("loay", message) }}</h1>
+      <h1>Welcome To VueJS {{ message }}</h1>
+
+      <!-- use v-bind for attr from vue -->
+      <a :href="link"> Google</a>
+
+      <!-- use v-on when clicked aplly function from vue -->
+      <h2 @click="incrementOne">Number is {{ number }}</h2>
+      <!-- use v-on when clicked aplly function from vue -->
+
+      <button @click="message = 'loayyyyy'">DOnt Click me</button>
+      <!-- use v-on when clicked write variable message in from vue -->
+      <button @click="message = 'loayyyyy'">DOnt Click me</button>
+      <label for="loay"> {{ message }}</label>
+
+      <!-- use v-model to bind two vue and text view -->
+      <input type="text" id="loay" v-model="message" />
+      <button @click="message = 'loay'">DOnt Click me</button>
+      <hr />
+      <form action="" @submit.prevent="sendData">
+        <label for="username">Username</label>
+        <input type="text" name="username" v-model="name" />
+        <label for="email">Email</label>
+        <input type="email" v-model="email" name="email" />
+        <label for="password">Password</label>
+        <input type="password" name="password" v-model="password" />
+        <input type="submit" value="Submit" />
+      </form>
+      <hr />
+      <!-- update data when click -->
+      <h2>Number one is {{ numberOne }}</h2>
+      <h2>Number one * 2 is {{ numberOneUp }}</h2>
+      <h2>Number Two is {{ numberTwo }}</h2>
+      <h2>Number Two is {{ numberTwoUp }}</h2>
+      <button @click="numberOne++">One</button>
+      <button @click="numberTwo++">Two</button>
+      <hr />
+      <!-- class binding  -->
+      <div :class="title">My Title</div>
+      <input type="text" v-model="title" />
+      <form action="">
+        <input type="radio" name="color" id="red" />
+        <label for="red">Red</label>
+        <input type="radio" name="color" id="yellow" />
+        <label for="yellow">yellow</label>
+        <input type="radio" name="color" id="green" />
+        <label for="green">green</label>
+      </form>
+      <button class="red" @click="selectColor('red')">Red</button>
+      <button class="yellow" @click="selectColor('yellow')">Yellow</button>
+      <button class="green" @click="selectColor('green')">Green</button>
+      <hr />
+      <!-- style binding -->
+      <h2 :style="`color: ${title}; font-size: ${fontSize}px;`">
+        Style bindind
+      </h2>
+      <button @click="fontBigger">Bigger</button>
+      <button @click="fontSmaller" :class="title">smaller</button>
+      <input type="number" name="" id="" v-model="fontSize" />
+      <hr />
+      <!-- v-if  -->
+      <h3>Your Name Is {{ name }} and Your Age is {{ age }}</h3>
+      <button @click="age++">AgeUp</button>
+      <p v-if="age<=30">His age is younger than 20</p>
+      <p v-if="age>30">His age is older than 20</p>
+      <!-- v-show same if but keep element in html and give dispaly to none-->
+      <p v-show="age>30">From v-show His age is older than 20</p>
+      <hr />
+      <!-- v-for Loop with if condition if it is object or string-->
+      <p v-for="(skill,index) in skills" :key="index">
+        {{ typeof skill === 'string'? skill:skill.name }}
+        <span style="display: block;">{{ typeof skill === 'string'? "":`${skill.name} the id is ${skill.id} and Age is ${skill.name}`}}</span>
+      </p>
+      <!-- Practise in v-for -->
+      <div class="container">
+        <div class="card" v-for="(card,index) in cards" :key="index">
+          <img :src="card.img" alt="">
+          <h4 style="color: white; text-align: center;"> {{ card.product }}</h4>
+          <h5 style="color: white; text-align: center;"> {{ card.price }}</h4>
+          <div class="color" ref="loay">
+            <span v-for="color in card.color" :style="`background-color: ${color} ; border: 1px solid ${color};`"></span>
+          </div>
+
+        </div>
+      </div>
+      <button @click="checkRefs" ref="loay1">Click</button>
+      <my_component></my_component>
+    </div>
+    <div id="app_root_2">
+    </div>
+    
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
